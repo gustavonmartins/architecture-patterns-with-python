@@ -1,3 +1,6 @@
+from models import Batch, OrderLine
+
+
 def test_allocation():
     batch = Batch(sku="SMALL-TABLE", qty=20)
     order_line = OrderLine(sku="SMALL-TABLE", qty=2, ref="some order")
@@ -18,26 +21,6 @@ def test_cant_allocate_twice():
     allocate(order_line, batch)
     allocate(order_line, batch)
     assert batch.qty == 18
-
-
-class Batch:
-    def __init__(self, sku, qty):
-        self.sku = sku
-        self.qty = qty
-        self.matchedorders = []
-
-    def was_ordered_by(self, orderline):
-        return orderline in self.matchedorders
-
-    def matched(self, orderline):
-        self.matchedorders.append(orderline)
-
-
-class OrderLine:
-    def __init__(self, sku, qty, ref):
-        self.sku = sku
-        self.qty = qty
-        self.ref = ref
 
 
 def allocate(orderline, batch):
