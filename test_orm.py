@@ -2,6 +2,7 @@ import models
 
 
 def get_engine():
+    """Creates a new SQLAlchemy Engine. Is useful later for metadata"""
     from sqlalchemy import create_engine
     from sqlalchemy.ext.declarative import declarative_base
 
@@ -15,6 +16,7 @@ def get_engine():
 
 
 def get_db():
+    """Returns a database session"""
     from sqlalchemy.orm import sessionmaker
 
     engine = get_engine()
@@ -26,6 +28,7 @@ def get_db():
 
 
 def create_mapper():
+    """Creates a mapper from desired model into SQLAlchemy"""
     from sqlalchemy.orm import (
         mapper,
         clear_mappers,
@@ -56,6 +59,7 @@ def create_mapper():
 
 
 def test_mapping():
+    """Tests if SQL Alchemy traditional mapping was done properly by checking if file inserted into DB really corresponds to target model"""
 
     create_mapper()
     db = get_db()
