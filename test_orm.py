@@ -2,7 +2,8 @@ import models
 
 
 def test_mapping():
-    from repository import OrderLineRepository, create_db_and_mapper
+    from repository import OrderLineRepository
+    from db import create_db_and_mapper
 
     """Tests if SQL Alchemy traditional mapping was done properly by checking if file inserted into DB really corresponds to target model"""
 
